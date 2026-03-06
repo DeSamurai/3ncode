@@ -15,8 +15,6 @@ TARGET = harbour-encode
 CONFIG += sailfishapp
 
 SOURCES += src/harbour-encode.cpp \
-    src/folderlistmodel/fileinfothread.cpp \
-    src/folderlistmodel/qquickfolderlistmodel.cpp \
     src/encodeprocess.cpp
 
 OTHER_FILES += qml/harbour-encode.qml \
@@ -45,16 +43,11 @@ DISTFILES += \
     qml/pages/AboutPage.qml \
     qml/pages/ContainerPage.qml \
     qml/pages/ContainerModel.qml \
-    qml/pages/OpenDialog.qml \
     qml/pages/DetailsSettings.qml \
     qml/pages/VCodecMenu.qml \
     qml/pages/ACodecMenu.qml \
     qml/pages/InfoBanner.qml
 
 HEADERS += \
-    src/folderlistmodel/fileinfothread_p.h \
-    src/folderlistmodel/fileproperty_p.h \
-    src/folderlistmodel/qquickfolderlistmodel.h \
-    src/encodeprocess.h \
-    src/fmhelper.hpp
+    src/encodeprocess.h
 

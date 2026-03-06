@@ -30,6 +30,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import Sailfish.Pickers 1.0
 import harbour.encode.Encode 1.0
 
 Page {
@@ -306,12 +307,10 @@ Page {
     }
     Component {
         id: openFileComponent
-        OpenDialog {
-            path: StandardPaths.videos
-            filter: mainWindow.videoFilter
-            onOpenFile: {
-                //console.debug("Try loading playlist " + path);
-                sourceFile = path;
+        FilePickerPage {
+            nameFilters: mainWindow.videoFilter
+            onSelectedContentPropertiesChanged: {
+                sourceFile = selectedContentProperties.filePath
                 pageStack.pop(page, PageStackAction.Immediate);
                 pageStack.push(Qt.resolvedUrl("ContainerPage.qml"), {dataContainer: page});
             }
