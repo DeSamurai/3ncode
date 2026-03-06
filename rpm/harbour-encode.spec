@@ -53,14 +53,28 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/%{name}
 %ifarch armv7hl
 echo "Include ffmpeg for armv7hl"
-cp ../harbour-encode/ffmpeg_static_arm %{buildroot}/usr/share/%{name}/ffmpeg_static
+cp ../3ncode/ffmpeg/armv7/ffmpeg %{buildroot}/usr/share/%{name}/ffmpeg_static
 %endif
 %ifarch i486
 echo "Include ffmpeg for i486"
-cp ../harbour-encode/ffmpeg_static_i486 %{buildroot}/usr/share/%{name}/ffmpeg_static
+cp .../3ncode/ffmpeg/i486/ffmpeg %{buildroot}/usr/share/%{name}/ffmpeg_static
+%endif
+%ifarch aarch64
+echo "Include ffmpeg for aarch64"
+cp ../3ncode/ffmpeg/aarch64/ffmpeg %{buildroot}/usr/share/%{name}/ffmpeg_static
+cp ../3ncode/ffmpeg/aarch64/ffprobe %{buildroot}/usr/share/%{name}/ffprobe
+cp ../3ncode/ffmpeg/aarch64/lame %{buildroot}/usr/share/%{name}/lame
+cp ../3ncode/ffmpeg/aarch64/x264 %{buildroot}/usr/share/%{name}/x264
+cp ../3ncode/ffmpeg/aarch64/x265 %{buildroot}/usr/share/%{name}/x265
 %endif
 echo "Make sure ffmpeg_static is executable"
 chmod +x %{buildroot}/usr/share/%{name}/ffmpeg_static
+%ifarch aarch64
+chmod +x %{buildroot}/usr/share/%{name}/ffprobe
+chmod +x %{buildroot}/usr/share/%{name}/lame
+chmod +x %{buildroot}/usr/share/%{name}/x264
+chmod +x %{buildroot}/usr/share/%{name}/x265
+%endif
 # >> install pre
 # << install pre
 %qmake5_install
