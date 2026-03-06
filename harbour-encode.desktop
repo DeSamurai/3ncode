@@ -11,3 +11,7 @@ Name=Encode
 # a different app name in German locale (de).
 Name[de]=Encode
 
+[X-Sailjail]
+Permissions=UserDirs;RemovableMedia
+OrganizationName=org.DeSamurai
+ApplicationName=harbour-encode
