@@ -6,6 +6,7 @@
 Name:       harbour-encode
 
 # >> macros
+%define __provides_exclude_from ^%{_datadir}/.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
@@ -13,7 +14,7 @@ Name:       harbour-encode
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    An app to encode audio&video files
-Version:    1.4
+Version:    1.5
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE

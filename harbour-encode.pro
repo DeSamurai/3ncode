@@ -51,3 +51,4 @@ DISTFILES += \
 HEADERS += \
     src/encodeprocess.h
 
+include(libs/opal.pri)

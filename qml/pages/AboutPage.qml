@@ -1,92 +1,68 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-Page {
+import Opal.About 1.0 as About
 
-    allowedOrientations: mainWindow.allowedOrientations
+About.AboutPageBase {
+    id: root
 
-    Flickable {
-        id: flick
-        width:parent.width
-        height: parent.height - Theme.paddingLarge * 3
-        anchors.top: parent.top
-        anchors.topMargin: Theme.paddingLarge * 3
-        contentHeight: column1.height
-
-        Column{
-            id: column1
-            width: parent.width
-            spacing: 15
-
-            Image{
-                source: appicon
-                height: Theme.iconSizeLarge
-                width: Theme.iconSizeLarge
-                fillMode: Image.PreserveAspectFit
-                anchors {
-                    horizontalCenter: parent.horizontalCenter
+    appName: mainWindow.appname
+    appIcon: Qt.resolvedUrl(mainWindow.appicon)
+    appVersion: mainWindow.version
+    description: qsTr("An easy to use audio & video encoder based on ffmpeg.")
+    authors: ["DeSamurai (" + qsTr("fork maintainer") + ")",
+        "llelectronics (" + qsTr("original app creator") + ")"]
+    homepageUrl: "https://openrepos.net/"
+    extraSections: [
+        About.InfoSection {
+            title: qsTr("Fork source code")
+            buttons: [
+                About.InfoButton {
+                    text: qsTr("Link")
+                    onClicked: root.openOrCopyUrl("https://github.com/DeSamurai/3ncode")
                 }
-            }
-            Label {
-                font.pixelSize: Theme.fontSizeMedium
-                text: appname+" v"+version
-                anchors.horizontalCenter: parent.horizontalCenter
-
-            }
-            Label {
-                text: "License: BSD (3-clause)"
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-            Rectangle{
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#333333" }
-                    GradientStop { position: 1.0; color: "#777777" }
+            ]
+        },
+        About.InfoSection {
+            title: qsTr("Original source code")
+            buttons: [
+                About.InfoButton {
+                    text: qsTr("Link")
+                    onClicked: root.openOrCopyUrl("https://github.com/llelectronics/3ncode")
                 }
-                anchors {
-                    horizontalCenter: parent.horizontalCenter
-                }
-                height: 3
-                width: parent.width-64
-            }
-
-            Label {
-                width: 360
-                font.pixelSize: Theme.fontSizeMedium
-                text: "Created by llelectronics"
-                anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignHCenter
-            }
-            Rectangle{
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#333333" }
-                    GradientStop { position: 1.0; color: "#777777" }
-                }
-                anchors {
-                    horizontalCenter: parent.horizontalCenter
-                }
-                height: 3
-                width: parent.width-64
-            }
-
-            Button {
-                id: homepage
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: "<a href=\"https://github.com/llelectronics/3ncode\">Sourcecode on Github</a>"
-                onClicked: {
-                    Qt.openUrlExternally("https://github.com/llelectronics/3ncode")
-                }
-            }
-
-            Label {
-                width: parent.width-70
-                font.pixelSize: Theme.fontSizeSmall
-                text: qsTr("An app to encode audio&video files based on ffmpeg.")
-                anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignHCenter
-                height: 200
-                wrapMode: Text.WordWrap
-            }
+            ]
         }
+    ]
+    licenses: About.License {
+        spdxId: "BSD-3-Clause"
+        customShortText: "This is free software: you are welcome to redistribute it under certain conditions. " +
+                         "There is NO WARRANTY, to the extent permitted by law."
     }
+    contributionSections: [
+        About.ContributionSection {
+            title: qsTr("Development")
+            groups: [
+                About.ContributionGroup {
+                    title: qsTr("Icon Design")
+                    entries: ["llelectronics"]
+                }
+            ]
+        },
+        About.ContributionSection {
+            title: qsTr("Translations")
+            groups: [
+                About.ContributionGroup {
+                    title: qsTr("English")
+                    entries: ["llelectronics"]
+                },
+                About.ContributionGroup {
+                    title: qsTr("Deutsch")
+                    entries: ["llelectronics"]
+                },
+                About.ContributionGroup {
+                    title: qsTr("Swedish")
+                    entries: ["Åke Engelbrektson"]
+                }
+            ]
+        }
+    ]
 }

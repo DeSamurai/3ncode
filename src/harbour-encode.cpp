@@ -57,6 +57,9 @@ int main(int argc, char *argv[])
     QQuickView *view = SailfishApp::createView(); // I get a white background with this.
     view->setSource(SailfishApp::pathTo("qml/harbour-encode.qml"));  // So I do this ;)
 
+    // add module search path so Opal modules can be found
+    view->engine()->addImportPath(SailfishApp::pathTo("qml/modules").toString());
+
     view->show();
 
     return app->exec();
