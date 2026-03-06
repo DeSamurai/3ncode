@@ -62,7 +62,7 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
+        <source>State:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -194,6 +194,10 @@ File saved to </source>
     </message>
     <message>
         <source>About </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Idle</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -18,10 +18,14 @@ public:
     Q_PROPERTY(QString errorOutput READ errorOutput)
     QString errorOutput() { return mErrorOutput; }
     Q_INVOKABLE void runFFmpeg();
+    Q_PROPERTY(QString currentState READ getCurrentState WRITE setCurrentState NOTIFY currentStateChanged)
+    QString getCurrentState() { return mCurrentState; }
+    Q_INVOKABLE void setCurrentState(const QString &currentState);
 
 signals:
     void error();
     void success();
+    void currentStateChanged();
 
 public slots:
     void getffmpegOutput(int exitCode);
@@ -29,6 +33,7 @@ public slots:
 private:
     QString mCmd;
     QString mErrorOutput;
+    QString mCurrentState = "Idle";
     QProcess ffmpegProc;
 };
 

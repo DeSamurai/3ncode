@@ -31,7 +31,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Sailfish.Pickers 1.0
-import harbour.encode.Encode 1.0
 
 Page {
     id: page
@@ -305,6 +304,7 @@ Page {
             }
         }
     }
+
     Component {
         id: openFileComponent
         FilePickerPage {
@@ -315,9 +315,6 @@ Page {
                 pageStack.push(Qt.resolvedUrl("ContainerPage.qml"), {dataContainer: page});
             }
         }
-    }
-    EncodeProcess {
-        id: encodeProcess
     }
 
     Connections {
@@ -391,7 +388,7 @@ Page {
         anchors.bottomMargin: Theme.paddingMedium
         anchors.horizontalCenter: parent.horizontalCenter
         text: qsTr("Dismiss")
-        onClicked: { isError = false; isSuccess = false; }
+        onClicked: { isError = false; isSuccess = false; encodeProcess.currentState = qsTr("Idle") }
         visible: isError || isSuccess
     }
     IconButton {

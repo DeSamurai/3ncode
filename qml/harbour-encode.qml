@@ -31,6 +31,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "pages"
+import harbour.encode.Encode 1.0
 
 ApplicationWindow
 {
@@ -47,9 +48,13 @@ ApplicationWindow
     property color highlightedColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
 
     initialPage: Component { FirstPage { Component.onCompleted: mainWindow.firstPage = this } }
-    cover: undefined //Qt.resolvedUrl("cover/CoverPage.qml")
+    cover: Qt.resolvedUrl("pages/CoverPage.qml")
     allowedOrientations: Orientation.All
     _defaultPageOrientations: Orientation.All
+
+    EncodeProcess {
+        id: encodeProcess
+    }
 
     // Helper for copying and moving files in OpenDialog
     ListModel {

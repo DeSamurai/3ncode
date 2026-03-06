@@ -28,25 +28,50 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import QtQuick 2.0
+import QtQuick 2.6
 import Sailfish.Silica 1.0
 
 CoverBackground {
-    Label {
-        id: label
+    id: root
+
+    Image {
+        source: Qt.resolvedUrl("img/harbour-encode-background.png")
+        fillMode: Image.PreserveAspectFit
+        opacity: 0.15
+        property real size: Math.min(parent.width, parent.height)
+        width: size
+        height: size
         anchors.centerIn: parent
-        text: qsTr("My Cover")
     }
 
-    CoverActionList {
-        id: coverAction
+    Column {
+        anchors {
+            fill: parent
+            margins: Theme.horizontalPageMargin
+        }
+        spacing: Theme.paddingMedium
 
-        CoverAction {
-            iconSource: "image://theme/icon-cover-next"
+        Label {
+            id: title
+            text: qsTr("State:")
+            color: Theme.primaryColor
+            font.pixelSize: Theme.fontSizeExtraLarge
         }
 
-        CoverAction {
-            iconSource: "image://theme/icon-cover-pause"
+        Label {
+            id: status
+            text: qsTr(encodeProcess.currentState)
+            color: Theme.highlightColor
+            font.pixelSize: Theme.fontSizeLarge
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            width: root.width - parent.anchors.margins
+        }
+    }
+
+    Connections {
+        target: encodeProcess
+        onCurrentStateChanged: {
+            status.text = qsTr(encodeProcess.currentState)
         }
     }
 }
